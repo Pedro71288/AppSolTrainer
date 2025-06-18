@@ -35,7 +35,7 @@ button {
 st.markdown(page_bg, unsafe_allow_html=True)
 
 # --- Cargar el logo ---
-logo = Image.open("C:/Users/USUARIO/PyCharmMiscProject/logosol2.png")  # Asegurate de renombrar tu imagen a esto o ajustar el nombre
+logo = Image.open("logosol2.png")  # Asegurate de renombrar tu imagen a esto o ajustar el nombre
 
 # --- Contenido centrado ---
 st.markdown("<div class='centered'>", unsafe_allow_html=True)
