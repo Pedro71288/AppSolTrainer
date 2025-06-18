@@ -1,16 +1,20 @@
 import streamlit as st
 from PIL import Image
 
-# CONFIGURACIÓN
+# CONFIGURACIÓN GENERAL
 st.set_page_config(page_title="Sol Trainer", layout="wide")
 
-# CSS PERSONALIZADO
+# INICIALIZACIÓN DE ESTADO
+if "pagina" not in st.session_state:
+    st.session_state.pagina = "inicio"
+
+# ESTILOS COMUNES
 st.markdown("""
     <style>
         html, body, [data-testid="stAppViewContainer"] {
             background-color: #a85ee0;
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
         [data-testid="stAppViewContainer"] {
             display: flex;
@@ -51,29 +55,27 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# CONTENEDOR PRINCIPAL
-st.markdown('<div class="main-container">', unsafe_allow_html=True)
+# ==============================
+# PANTALLA INICIAL
+# ==============================
+if st.session_state.pagina == "inicio":
+    st.markdown('<div class="main-container">', unsafe_allow_html=True)
 
-# BANNER
-try:
-    banner = Image.open("banner.png")
-    st.image(banner, use_container_width=True)
-except:
-    st.error("No se encuentra 'banner.png'. Verificá que esté en la carpeta correcta.")
+    try:
+        banner = Image.open("banner.png")
+        st.image(banner, use_container_width=True)
+    except:
+        st.error("No se encuentra 'banner.png'. Verificá que esté en la carpeta correcta.")
 
-# BOTÓN CENTRADO
-if st.button("Comenzar"):
-    st.session_state.pagina = "menu"
+    if st.button("Comenzar"):
+        st.session_state.pagina = "menu"
 
-# CIERRE CONTENEDOR
-st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# INICIALIZACIÓN DEL ESTADO SI NO EXISTE
-if "pagina" not in st.session_state:
-    st.session_state.pagina = "inicio"
-
-# PÁGINA DE MENÚ PRINCIPAL
-if st.session_state.pagina == "menu":
+# ==============================
+# PANTALLA MENÚ PRINCIPAL
+# ==============================
+elif st.session_state.pagina == "menu":
     st.markdown("""
         <style>
             .menu-container {
@@ -121,4 +123,3 @@ if st.session_state.pagina == "menu":
             </div>
         </div>
     """, unsafe_allow_html=True)
-
