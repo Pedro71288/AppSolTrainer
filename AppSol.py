@@ -4,7 +4,7 @@ from PIL import Image
 # CONFIGURACIÓN
 st.set_page_config(page_title="Sol Trainer", layout="wide")
 
-# CSS AJUSTADO
+# CSS PERSONALIZADO
 st.markdown("""
     <style>
         html, body, [data-testid="stAppViewContainer"] {
@@ -57,7 +57,7 @@ st.markdown('<div class="main-container">', unsafe_allow_html=True)
 # BANNER
 try:
     banner = Image.open("banner.png")
-    st.image(banner, use_column_width=True)
+    st.image(banner, use_container_width=True)
 except:
     st.error("No se encuentra 'banner.png'. Verificá que esté en la carpeta correcta.")
 
