@@ -45,9 +45,9 @@ st.markdown("""
 with st.container():
     st.markdown('<div class="main">', unsafe_allow_html=True)
 
-    # Banner completo (sin texto adicional)
-    banner = Image.open("banner.png")  # Renombrá la imagen que descargaste como 'banner.png'
-    st.image(banner, use_column_width=True, caption=None)
+    # Banner superior (imagen completa con título y frase ya incluidos)
+    banner = Image.open("banner.png")  # Asegurate que la imagen tenga este nombre y esté en la misma carpeta
+    st.image(banner, use_column_width=True)
 
     # Botón Comenzar
     st.markdown('<div class="button">', unsafe_allow_html=True)
