@@ -4,7 +4,7 @@ from PIL import Image
 # CONFIGURACIÓN
 st.set_page_config(page_title="Sol Trainer", layout="wide")
 
-# CSS MEJORADO Y FUNCIONAL
+# CSS AJUSTADO
 st.markdown("""
     <style>
         html, body, [data-testid="stAppViewContainer"] {
@@ -23,10 +23,16 @@ st.markdown("""
             background-color: white;
             border-radius: 20px;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
         }
         .banner {
             width: 100%;
             border-radius: 12px;
+        }
+        .stButton {
+            display: flex;
+            justify-content: center;
+            margin-top: 2em;
         }
         .stButton > button {
             background-color: #6A0DAD;
@@ -35,7 +41,6 @@ st.markdown("""
             padding: 16px 60px;
             border: none;
             border-radius: 12px;
-            margin-top: 2em;
             transition: 0.3s ease;
         }
         .stButton > button:hover {
@@ -49,14 +54,14 @@ st.markdown("""
 # CONTENEDOR PRINCIPAL
 st.markdown('<div class="main-container">', unsafe_allow_html=True)
 
-# BANNER SUPERIOR (asegurate que se llame banner.png)
+# BANNER
 try:
     banner = Image.open("banner.png")
-    st.image(banner, use_column_width=True, output_format="PNG")
+    st.image(banner, use_column_width=True)
 except:
-    st.error("No se encuentra la imagen 'banner.png'. Asegurate de que esté en la misma carpeta.")
+    st.error("No se encuentra 'banner.png'. Verificá que esté en la carpeta correcta.")
 
-# BOTÓN CENTRAL
+# BOTÓN CENTRADO
 if st.button("Comenzar"):
     st.session_state.pagina = "menu"
 
