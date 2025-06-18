@@ -47,7 +47,7 @@ with st.container():
 
     # Banner superior (imagen completa con título y frase ya incluidos)
     banner = Image.open("banner.png")  # Asegurate que la imagen tenga este nombre y esté en la misma carpeta
-    st.image(banner, use_column_width=True)
+    st.image(banner, use_container_width=True)
 
     # Botón Comenzar
     st.markdown('<div class="button">', unsafe_allow_html=True)
