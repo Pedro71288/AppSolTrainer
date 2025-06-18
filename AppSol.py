@@ -1,52 +1,59 @@
 import streamlit as st
 from PIL import Image
-import base64
 
-# --- Fondo degradado (usando CSS en Streamlit) ---
-page_bg = """
-<style>
-body {
-    background: linear-gradient(135deg, #536DFE, #5C6BC0);
-    color: white;
-}
-.centered {
-    text-align: center;
-    margin-top: 100px;
-}
-button {
-    border-radius: 25px;
-    padding: 10px 40px;
-    font-size: 16px;
-    font-weight: bold;
-}
-.login-btn {
-    background-color: white;
-    color: red;
-    border: none;
-    margin-top: 15px;
-}
-.forgot {
-    color: #eeeeee;
-    font-size: 13px;
-    margin-top: 10px;
-}
-</style>
-"""
-st.markdown(page_bg, unsafe_allow_html=True)
+# Cargar el logo como banner (ajustado al ancho)
+img = Image.open("logosol2.png")
+st.image(img, use_column_width=True)
 
-# --- Cargar el logo ---
-logo = Image.open("logosol2.png")  # Asegurate de renombrar tu imagen a esto o ajustar el nombre
+# Aplicar estilos CSS para texto y botón
+st.markdown("""
+    <style>
+    .title {
+        text-align: center;
+        font-family: 'Georgia', serif;
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 0px;
+    }
+    .subtitle {
+        text-align: center;
+        font-style: italic;
+        font-family: 'Arial', sans-serif;
+        font-size: 24px;
+        color: #555;
+        margin-top: 5px;
+        margin-bottom: 40px;
+    }
+    .stButton > button {
+        font-size: 24px;
+        padding: 15px 60px;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-# --- Contenido centrado ---
-st.markdown("<div class='centered'>", unsafe_allow_html=True)
-st.image(logo, width=100)
+# Título y subtítulo con estilo
+st.markdown('<h1 class="title">Sol Trainer</h1>', unsafe_allow_html=True)
+st.markdown('<h3 class="subtitle">Logra lo que creías imposible</h3>', unsafe_allow_html=True)
 
-st.markdown("<h1 style='margin-bottom: 5px;'>Sol Trainer</h1>", unsafe_allow_html=True)
-st.markdown("<p style='margin-top: 0;'>Logra lo que creías imposible</p>", unsafe_allow_html=True)
+# Control de navegación con session_state
+if 'menu' not in st.session_state:
+    st.session_state.menu = False
 
-# Botón de login
-login_btn = st.button("Login", key="login")
+if not st.session_state.menu:
+    if st.button("Comenzar"):
+        st.session_state.menu = True
+        st.experimental_rerun()
+else:
+    st.header("Menú Principal")
+    st.write("Elegí una sección para comenzar:")
 
-# Texto inferior
-st.markdown("<p class='forgot'>¿Olvidaste tu contraseña?</p>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
+    # Secciones de ejemplo
+    if st.button("Rutinas"):
+        st.success("Aquí irán las rutinas personalizadas.")
+    if st.button("Dieta"):
+        st.info("Aquí estará tu plan alimenticio.")
+    if st.button("Progreso"):
+        st.warning("Aquí podrás ver tu evolución.")
