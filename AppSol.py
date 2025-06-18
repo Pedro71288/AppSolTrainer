@@ -1,125 +1,71 @@
-import streamlit as st
-from PIL import Image
-
-# CONFIGURACIÓN GENERAL
-st.set_page_config(page_title="Sol Trainer", layout="wide")
-
-# INICIALIZACIÓN DE ESTADO
-if "pagina" not in st.session_state:
-    st.session_state.pagina = "inicio"
-
-# ESTILOS COMUNES
-st.markdown("""
+if st.session_state.pagina == "inicio":
+    st.markdown("""
     <style>
+        /* Fondo degradado violetas en toda la app */
         html, body, [data-testid="stAppViewContainer"] {
-            background-color: #a85ee0;
+            height: 100%;
             margin: 0;
-            padding: 0;
-        }
-        [data-testid="stAppViewContainer"] {
+            background: linear-gradient(135deg, #7b2ff7, #ac42f0, #c77aff);
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            padding-top: 40px;
         }
+
+        /* Contenedor blanco que rodea todo */
         .main-container {
-            width: 90%;
-            max-width: 1000px;
-            padding: 2em;
             background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            text-align: center;
+            border-radius: 25px;
+            max-width: 1000px;
+            width: 90%;
+            box-shadow: 0 12px 30px rgba(124, 41, 255, 0.3);
+            padding: 2rem 2rem 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        /* Banner centrado y con bordes redondeados arriba */
         .banner {
             width: 100%;
-            border-radius: 12px;
+            max-width: 900px;
+            border-radius: 20px 20px 0 0;
+            object-fit: contain;
+            box-shadow: 0 8px 20px rgba(124, 41, 255, 0.25);
+            margin-bottom: 2rem;
         }
-        .stButton {
-            display: flex;
-            justify-content: center;
-            margin-top: 2em;
-        }
+
+        /* Botón centrado con colores violetas y sombra */
         .stButton > button {
-            background-color: #6A0DAD;
+            background-color: #7b2ff7;
             color: white;
             font-size: 22px;
-            padding: 16px 60px;
+            padding: 16px 70px;
             border: none;
-            border-radius: 12px;
-            transition: 0.3s ease;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(124, 41, 255, 0.6);
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
+
         .stButton > button:hover {
             background-color: white;
-            color: #6A0DAD;
-            border: 2px solid #6A0DAD;
+            color: #7b2ff7;
+            border: 2px solid #7b2ff7;
+            box-shadow: 0 6px 20px rgba(124, 41, 255, 0.8);
         }
     </style>
-""", unsafe_allow_html=True)
-
-# ==============================
-# PANTALLA INICIAL
-# ==============================
-if st.session_state.pagina == "inicio":
-    st.markdown('<div class="main-container">', unsafe_allow_html=True)
+    <div class="main-container">
+    """, unsafe_allow_html=True)
 
     try:
         banner = Image.open("banner.png")
-        st.image(banner, use_container_width=True)
+        st.image(banner, use_container_width=True, clamp=True)
     except:
         st.error("No se encuentra 'banner.png'. Verificá que esté en la carpeta correcta.")
 
     if st.button("Comenzar"):
         st.session_state.pagina = "menu"
 
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# ==============================
-# PANTALLA MENÚ PRINCIPAL
-# ==============================
-elif st.session_state.pagina == "menu":
-    st.markdown("""
-        <style>
-            .menu-container {
-                background-color: white;
-                padding: 3em;
-                border-radius: 20px;
-                max-width: 1000px;
-                margin: auto;
-                box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            }
-            h1 {
-                text-align: center;
-                color: #6A0DAD;
-                margin-bottom: 40px;
-            }
-            .menu-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 2em;
-            }
-            .menu-item {
-                background-color: #f5e9ff;
-                border: 2px solid #6A0DAD;
-                border-radius: 15px;
-                padding: 2em;
-                text-align: center;
-                font-size: 18px;
-                font-weight: bold;
-                color: #6A0DAD;
-                transition: 0.3s ease;
-            }
-            .menu-item:hover {
-                background-color: #6A0DAD;
-                color: white;
-                cursor: pointer;
-            }
-        </style>
-        <div class="menu-container">
-            <h1>Menú Principal</h1>
-            <div class="menu-grid">
-                <div class="menu-item">🏋️ Rutinas</div>
-                <div class="menu-item">🥗 Dietas</div>
-                <div class="menu-item">💡 Consejos</div>
-                <div class="menu-item">📞 Contacto</div>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
