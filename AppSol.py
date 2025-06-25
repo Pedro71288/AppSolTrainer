@@ -2,48 +2,163 @@ import streamlit as st
 from PIL import Image
 
 def menu():
-    # Fondo degradado para toda la app en menú
     st.markdown(
         """
         <style>
-        .stApp {
-            background: linear-gradient(135deg, #7b2ff7, #ff7e5f);
-            min-height: 100vh;
-            color: white;
-        }
+            /* Fondo degradado de violeta a naranja */
+            .menu-background {
+                min-height: 100vh;
+                background: linear-gradient(135deg, #7b2ff7, #ff7e5f);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 15px;
+                box-sizing: border-box;
+                color: white;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Encabezado */
+            .menu-header {
+                width: 100%;
+                max-width: 480px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 25px;
+                user-select: none;
+            }
+            .menu-header .icon {
+                cursor: pointer;
+                font-size: 28px;
+                padding: 5px 10px;
+                user-select: none;
+            }
+
+            /* Botones apilados verticalmente */
+            .menu-button {
+                background: rgba(255, 255, 255, 0.15);
+                border: 1.5px solid white;
+                border-radius: 20px;
+                color: white;
+                font-weight: 600;
+                font-size: 18px;
+                padding: 18px 20px;
+                margin-bottom: 20px;
+                width: 100%;
+                max-width: 480px;
+                box-sizing: border-box;
+                cursor: pointer;
+                user-select: none;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                transition: background 0.3s ease;
+            }
+            .menu-button:hover {
+                background: rgba(255, 255, 255, 0.35);
+            }
+
+            /* Íconos grandes */
+            .menu-icon {
+                font-size: 32px;
+                flex-shrink: 0;
+            }
+
+            /* Texto con título y subtítulo */
+            .menu-text {
+                display: flex;
+                flex-direction: column;
+            }
+            .menu-text .title {
+                font-size: 20px;
+                font-weight: 700;
+            }
+            .menu-text .subtitle {
+                font-size: 14px;
+                font-weight: 400;
+                opacity: 0.85;
+                margin-top: 4px;
+            }
+
+            /* Responsive móvil */
+            @media (max-width: 480px) {
+                .menu-button {
+                    font-size: 16px;
+                    padding: 16px 15px;
+                }
+                .menu-icon {
+                    font-size: 28px;
+                }
+                .menu-text .title {
+                    font-size: 18px;
+                }
+                .menu-text .subtitle {
+                    font-size: 13px;
+                }
+            }
         </style>
+
+        <div class="menu-background">
+            <div class="menu-header">
+                <div class="icon" onclick="window.history.back()">←</div>
+                <div>Fitness</div>
+                <div class="icon">≡</div>
+            </div>
+
+            <div class="menu-button" id="hipertrofia">
+                <div class="menu-icon">💪</div>
+                <div class="menu-text">
+                    <div class="title">Hipertrofia</div>
+                    <div class="subtitle">Entrenamientos enfocados en el crecimiento muscular.</div>
+                </div>
+            </div>
+
+            <div class="menu-button" id="perdida-grasa">
+                <div class="menu-icon">🔥</div>
+                <div class="menu-text">
+                    <div class="title">Pérdida de grasa</div>
+                    <div class="subtitle"></div>
+                </div>
+            </div>
+
+            <div class="menu-button" id="aumento-fuerza">
+                <div class="menu-icon">🏋️‍♂️</div>
+                <div class="menu-text">
+                    <div class="title">Aumento de fuerza</div>
+                    <div class="subtitle"></div>
+                </div>
+            </div>
+
+            <div class="menu-button" id="resistencia-fisica">
+                <div class="menu-icon">🏃‍♂️</div>
+                <div class="menu-text">
+                    <div class="title">Resistencia física</div>
+                    <div class="subtitle"></div>
+                </div>
+            </div>
+
+            <div class="menu-button" id="definicion-muscular">
+                <div class="menu-icon">🎯</div>
+                <div class="menu-text">
+                    <div class="title">Definición muscular</div>
+                    <div class="subtitle"></div>
+                </div>
+            </div>
+
+            <div class="menu-button" id="bienestar-general">
+                <div class="menu-icon">🌿</div>
+                <div class="menu-text">
+                    <div class="title">Bienestar general</div>
+                    <div class="subtitle"></div>
+                </div>
+            </div>
+        </div>
         """,
         unsafe_allow_html=True,
     )
-
-    # Encabezado con columnas (flecha atrás, título, menú)
-    col1, col2, col3 = st.columns([1,6,1])
-    with col1:
-        if st.button("←"):
-            st.session_state.pagina = "inicio"
-    with col2:
-        st.markdown("<h2 style='text-align:center; margin: 0;'>Fitness</h2>", unsafe_allow_html=True)
-    with col3:
-        st.button("≡")  # Botón menú (sin funcionalidad por ahora)
-
-    st.markdown("---")
-
-    # Lista de opciones con íconos y subtítulos
-    opciones = [
-        ("💪 Hipertrofia", "Entrenamientos enfocados en el crecimiento muscular."),
-        ("🔥 Pérdida de grasa", ""),
-        ("🏋️‍♂️ Aumento de fuerza", ""),
-        ("🏃‍♂️ Resistencia física", ""),
-        ("🎯 Definición muscular", ""),
-        ("🌿 Bienestar general", "")
-    ]
-
-    # Botones apilados verticalmente con subtítulos
-    for titulo, subtitulo in opciones:
-        if st.button(f"{titulo}", key=titulo, help=subtitulo):
-            st.info(f"Seleccionaste: {titulo}")
-        if subtitulo:
-            st.markdown(f"<small style='color:rgba(255,255,255,0.75); margin-bottom:15px; display:block;'>{subtitulo}</small>", unsafe_allow_html=True)
 
 def main():
     st.set_page_config(page_title="Sol Trainer", layout="centered")
@@ -64,6 +179,7 @@ def main():
                     align-items: flex-start;
                     padding-top: 40px;
                     color: white;
+                    font-family: Arial, sans-serif;
                 }
                 .banner-container {
                     width: 90vw;
