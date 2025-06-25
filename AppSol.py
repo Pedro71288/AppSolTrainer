@@ -7,7 +7,7 @@ def menu():
         <style>
             /* Fondo degradado de violeta a naranja */
             .menu-background {
-                height: 100vh;
+                min-height: 100vh;
                 background: linear-gradient(135deg, #7b2ff7, #ff7e5f);
                 display: flex;
                 flex-direction: column;
@@ -19,7 +19,7 @@ def menu():
             /* Encabezado */
             .menu-header {
                 width: 100%;
-                max-width: 400px;
+                max-width: 480px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -36,17 +36,7 @@ def menu():
                 user-select: none;
             }
 
-            /* Grilla de botones 2x3 */
-            .menu-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 1fr);
-                gap: 20px;
-                width: 100%;
-                max-width: 400px;
-            }
-
-            /* Botones cuadrados, fondo semi-transparente blanco con borde blanco */
+            /* Botones apilados verticalmente */
             .menu-button {
                 background: rgba(255, 255, 255, 0.15);
                 border: 1.5px solid white;
@@ -54,67 +44,114 @@ def menu():
                 color: white;
                 font-weight: 600;
                 font-size: 18px;
-                height: 100px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                padding: 18px 20px;
+                margin-bottom: 20px;
+                width: 100%;
+                max-width: 480px;
+                box-sizing: border-box;
                 cursor: pointer;
                 user-select: none;
+                display: flex;
+                align-items: center;
+                gap: 15px;
                 transition: background 0.3s ease;
             }
             .menu-button:hover {
                 background: rgba(255, 255, 255, 0.35);
             }
 
-            /* Íconos grandes y blancos */
+            /* Íconos grandes */
             .menu-icon {
-                font-size: 36px;
-                margin-bottom: 8px;
-                line-height: 1;
+                font-size: 32px;
+                flex-shrink: 0;
             }
 
-            /* Optimización para pantalla táctil */
+            /* Texto con título y subtítulo */
+            .menu-text {
+                display: flex;
+                flex-direction: column;
+            }
+            .menu-text .title {
+                font-size: 20px;
+                font-weight: 700;
+            }
+            .menu-text .subtitle {
+                font-size: 14px;
+                font-weight: 400;
+                opacity: 0.85;
+                margin-top: 4px;
+            }
+
+            /* Optimización para móvil */
             @media (max-width: 480px) {
                 .menu-button {
-                    height: 90px;
                     font-size: 16px;
+                    padding: 16px 15px;
                 }
                 .menu-icon {
-                    font-size: 30px;
+                    font-size: 28px;
+                }
+                .menu-text .title {
+                    font-size: 18px;
+                }
+                .menu-text .subtitle {
+                    font-size: 13px;
                 }
             }
         </style>
+
         <div class="menu-background">
             <div class="menu-header">
                 <div class="icon" id="back">←</div>
                 <div>Fitness</div>
                 <div class="icon" id="menu">≡</div>
             </div>
-            <div class="menu-grid">
-                <div class="menu-button" id="workout">
-                    <div class="menu-icon">🏋️‍♂️</div>
-                    Workout
+
+            <div class="menu-button" id="hipertrofia">
+                <div class="menu-icon">💪</div>
+                <div class="menu-text">
+                    <div class="title">Hipertrofia</div>
+                    <div class="subtitle">Entrenamientos enfocados en el crecimiento muscular.</div>
                 </div>
-                <div class="menu-button" id="goals">
-                    <div class="menu-icon">📊</div>
-                    Goals
+            </div>
+
+            <div class="menu-button" id="perdida-grasa">
+                <div class="menu-icon">🔥</div>
+                <div class="menu-text">
+                    <div class="title">Pérdida de grasa</div>
+                    <div class="subtitle"></div>
                 </div>
-                <div class="menu-button" id="cardio">
-                    <div class="menu-icon">❤️‍🔥</div>
-                    Cardio
+            </div>
+
+            <div class="menu-button" id="aumento-fuerza">
+                <div class="menu-icon">🏋️‍♂️</div>
+                <div class="menu-text">
+                    <div class="title">Aumento de fuerza</div>
+                    <div class="subtitle"></div>
                 </div>
-                <div class="menu-button" id="info">
-                    <div class="menu-icon">ℹ️</div>
-                    Info
+            </div>
+
+            <div class="menu-button" id="resistencia-fisica">
+                <div class="menu-icon">🏃‍♂️</div>
+                <div class="menu-text">
+                    <div class="title">Resistencia física</div>
+                    <div class="subtitle"></div>
                 </div>
-                <div class="menu-button" id="journal">
-                    <div class="menu-icon">📄</div>
-                    Journal
+            </div>
+
+            <div class="menu-button" id="definicion-muscular">
+                <div class="menu-icon">🎯</div>
+                <div class="menu-text">
+                    <div class="title">Definición muscular</div>
+                    <div class="subtitle"></div>
                 </div>
-                <div class="menu-button" id="profile">
-                    <div class="menu-icon">👤</div>
-                    Profile
+            </div>
+
+            <div class="menu-button" id="bienestar-general">
+                <div class="menu-icon">🌿</div>
+                <div class="menu-text">
+                    <div class="title">Bienestar general</div>
+                    <div class="subtitle"></div>
                 </div>
             </div>
         </div>
