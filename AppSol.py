@@ -67,13 +67,12 @@ if "pagina" not in st.session_state:
 if st.session_state["pagina"] == "inicio":
     st.markdown("<h1>Sol Trainer</h1>", unsafe_allow_html=True)
     st.markdown("<h3>Tu camino al cambio empieza aquí</h3>", unsafe_allow_html=True)
-    st.write("💡 Consejo del día: Cada paso que das, te acerca a tu mejor versión.")
     if st.button("Comenzar", use_container_width=True):
         st.session_state["pagina"] = "menu"
 
 # ——— MENÚ PRINCIPAL ———
 elif st.session_state["pagina"] == "menu":
-    st.markdown("<h2>Seleccioná tu objetivo principal</h2>", unsafe_allow_html=True)
+    st.markdown("<h2>Seleccioná tu objetivo</h2>", unsafe_allow_html=True)
 
     cards = [
         ("Hipertrofia", "💪", "hipertrofia"),
